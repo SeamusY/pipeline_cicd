@@ -1,0 +1,4 @@
+config:
+  aws:profile: Seamus_dev
+  aws:region: ca-central-1
+  data_ingestion_project:env: dev
