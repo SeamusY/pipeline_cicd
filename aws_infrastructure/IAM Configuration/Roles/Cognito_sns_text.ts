@@ -8,7 +8,12 @@ export const cognito_sns_text: aws.iam.PolicyDocument = {
             Principal: {
                 Service: "cognito-idp.amazonaws.com"
             },
-            Action: "sts:AssumeRole"
+            Action: "sts:AssumeRole",
+            Condition: {
+                "StringEquals": {
+                    "sts:ExternalId": "sns_205_role_external_id"
+                }
+            }
         },
         {
             Effect: "Allow",

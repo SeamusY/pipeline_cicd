@@ -1,0 +1,21 @@
+[
+    {
+        "tableName": "users", 
+        "attributes": [
+            {
+                "name": "name",
+                "type": "S"
+            }, {
+                "name": "name",
+                "type": "S"
+            }
+
+        ]
+    },
+    {
+        "tableName": "files"
+    },
+    {
+        "tableName": "invoices"
+    }
+]
