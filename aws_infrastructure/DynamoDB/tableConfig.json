@@ -3,19 +3,89 @@
         "tableName": "users", 
         "attributes": [
             {
-                "name": "name",
+                "name": "phone_number",
                 "type": "S"
             }, {
-                "name": "name",
+                "name": "business_name",
+                "type": "S"
+            },{
+                "name": "stripe_customer_id",
                 "type": "S"
             }
-
-        ]
+        ],
+        "billingMode": "PROVISIONED",
+        "globalSecondaryIndexes": [{
+            "hashKey": "stripe_customer_id",
+            "rangeKey": "business_name",
+            "name": "search_stripe_customer_Id",
+            "projectionType": "ALL",
+            "readCapacity": 1,
+            "writeCapacity": 1
+        }],
+        "hashKey": "phone_number",
+        "rangeKey": "business_name",
+        "writeCapacity": 1,
+        "readCapacity": 1
     },
     {
-        "tableName": "files"
+        "tableName": "files",
+        "attributes": [
+            {
+                "name": "files_id",
+                "type": "S"
+            }, {
+                "name": "owner_phone_number",
+                "type": "S"
+            }
+        ],
+        "billingMode": "PROVISIONED",
+        "globalSecondaryIndexes": [{
+            "hashKey": "owner_phone_number",
+            "name": "search_owner_files",
+            "projectionType": "ALL",
+            "readCapacity": 1,
+            "writeCapacity": 1
+        }],
+        "hashKey": "files_id",
+        "writeCapacity": 1,
+        "readCapacity": 1
     },
     {
-        "tableName": "invoices"
+        "tableName": "invoices",
+        "attributes": [
+            {
+                "name": "invoice_id",
+                "type": "S"
+            }, {
+                "name": "business_name",
+                "type": "S"
+            }, {
+                "name": "phone_number",
+                "type": "S"
+            },
+            {
+                "name": "subscription_id",
+                "type": "S"
+            }
+        ],
+        "billingMode": "PROVISIONED",
+        "globalSecondaryIndexes": [{
+            "hashKey": "phone_number",
+            "name": "serach_invoices_by_phone_number",
+            "projectionType": "ALL",
+            "readCapacity": 1,
+            "writeCapacity": 1
+        },{
+            "hashKey": "business_name",
+            "rangeKey": "subscription_id",
+            "name": "serach_invoices_by_subscription_id_n_business_name",
+            "projectionType": "ALL",
+            "readCapacity": 1,
+            "writeCapacity": 1
+        }],
+        "hashKey": "invoice_id",
+        "rangeKey": "business_name",
+        "writeCapacity": 1,
+        "readCapacity": 1
     }
 ]

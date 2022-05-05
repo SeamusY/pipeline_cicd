@@ -1,0 +1,148 @@
+[
+    {
+        "tableName": "users", 
+        "attributes": [
+            {
+                "name": "name",
+                "type": "S"
+            }, {
+                "name": "business_name",
+                "type": "S"
+            }, {
+                "name": "city",
+                "type": "S"
+            },{
+                "name": "country_residency",
+                "type": "S"
+            }, {
+                "name": "phone_number",
+                "type": "S"
+            }, {
+                "name": "is_active",
+                "type": "S"
+            }, {
+                "name": "stripe_customer_id",
+                "type": "S"
+            }, {
+                "name": "email",
+                "type": "S"
+            }, {
+                "name": "subscription_no",
+                "type": "S"
+            }, {
+                "name": "stripe_flat_rate_subscription_id",
+                "type": "S"
+            }, {
+                "name": "stripe_meter_subscription_id",
+                "type": "S"
+            }, {
+                "name": "is_paid",
+                "type": "S"
+            }
+        ],
+        "billingMode": "PROVISIONED",
+        "globalSecondaryIndexes": [{
+            "hashKey": "stripe_customer_id",
+            "name": "Stripe Customer Id",
+            "projectionType": "ALL",
+            "NonKeyAttributes": [
+                "name",
+                "business_name",
+                "city",
+                "country_residency",
+                "phone_number",
+                "is_active",
+                "stripe_customer_id",
+                "email",
+                "subscription_no",
+                "stripe_flat_rate_subscription_id",
+                "stripe_meter_subscription_id",
+                "is_paid"
+            ],
+            "readCapacity": 1,
+            "writeCapacity": 1
+        }],
+        "hashKey": "phone_number",
+        "rangeKey": "business_name",
+        "writeCapacity": 1,
+        "readCapacity": 1
+    },
+    {
+        "tableName": "files",
+        "attributes": [
+            {
+                "name": "files_id",
+                "type": "S"
+            }, {
+                "name": "owner_phone_number",
+                "type": "S"
+            }
+            , {
+                "name": "file_path",
+                "type": "S"
+            },{
+                "name": "is_active",
+                "type": "S"
+            }, {
+                "name": "upload_date",
+                "type": "S"
+            }
+        ],
+        "billingMode": "PROVISIONED",
+        "globalSecondaryIndexes": [{
+            "hashKey": "owner_phone_number",
+            "name": "Find Files by Owner",
+            "projectionType": "ALL",
+            "readCapacity": 1,
+            "writeCapacity": 1
+        }],
+        "hashKey": "files_id",
+        "writeCapacity": 1,
+        "readCapacity": 1
+    },
+    {
+        "tableName": "invoices",
+        "attributes": [
+            {
+                "name": "invoice_id",
+                "type": "S"
+            }, {
+                "name": "business_name",
+                "type": "S"
+            }, {
+                "name": "phone_number",
+                "type": "S"
+            }, {
+                "name": "is_Per_Click",
+                "type": "S"
+            }, {
+                "name": "payment_status",
+                "type": "S"
+            }, {
+                "name": "payment_sub_total",
+                "type": "S"
+            }, {
+                "name": "payment_tax",
+                "type": "S"
+            }, {
+                "name": "payment_total",
+                "type": "S"
+            }, {
+                "name": "invoice_path",
+                "type": "S"
+            }
+        ],
+        "billingMode": "PROVISIONED",
+        "globalSecondaryIndexes": [{
+            "hashKey": "phone_number",
+            "name": "Find Files by phone number",
+            "projectionType": "ALL",
+            "NonKeyAttributes": ["invoice_id", "business_name", "phone_number", "is_Per_Click", "payment_status", "payment_sub_total", "payment_tax", "payment_total", "invoice_path"],
+            "readCapacity": 1,
+            "writeCapacity": 1
+        }],
+        "hashKey": "invoice_id",
+        "writeCapacity": 1,
+        "readCapacity": 1
+    }
+]
