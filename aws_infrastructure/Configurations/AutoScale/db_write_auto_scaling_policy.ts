@@ -1,11 +1,11 @@
 import * as aws from "@pulumi/aws";
 
-export function createWriteScalingPolicy(policy_name: string, dynamodbTableReadTarget: aws.appautoscaling.Target) {
+export function createWriteScalingPolicy(policy_name: string, dynamodbTableWriteTarget: aws.appautoscaling.Target) {
     return new aws.appautoscaling.Policy(policy_name, {
         policyType: "TargetTrackingScaling",
-        resourceId: dynamodbTableReadTarget.resourceId,
-        scalableDimension: dynamodbTableReadTarget.scalableDimension,
-        serviceNamespace: dynamodbTableReadTarget.serviceNamespace,
+        resourceId: dynamodbTableWriteTarget.resourceId,
+        scalableDimension: dynamodbTableWriteTarget.scalableDimension,
+        serviceNamespace: dynamodbTableWriteTarget.serviceNamespace,
         targetTrackingScalingPolicyConfiguration: {
             predefinedMetricSpecification: {
                 predefinedMetricType: "DynamoDBWriteCapacityUtilization",

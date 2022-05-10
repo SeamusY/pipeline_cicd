@@ -1,6 +1,6 @@
 import * as aws from "@pulumi/aws";
-
-export function createAppReadTarget(name: string, resouceId: string, isGlobalIndex: boolean ) {
+import * as pulumi from "@pulumi/pulumi";
+export function createAppReadTarget(name: string, resouceId: pulumi.Output<string>, isGlobalIndex: boolean ) {
     if(isGlobalIndex) {
         return new aws.appautoscaling.Target(name, {
             maxCapacity: 10,
