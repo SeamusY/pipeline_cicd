@@ -13,3 +13,8 @@ Before Beginning, please clone the project
 - yarn
 - pulumi up
 ```
+
+## Note:
+After the installation requires to be checked:
+- Cognito SMS configuration region.
+- PinPoint manual request Phone numbers required, for Ca-Central-1

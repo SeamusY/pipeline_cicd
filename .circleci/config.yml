@@ -1,0 +1,37 @@
+version: 2.1
+orbs: 
+  serverless-framework: circleci/serverless-framework@2.0.0
+  pulumi: pulumi/pulumi@2.1.0
+jobs:
+  build:
+    docker: 
+      - image: cimg/node:18.0.0
+      - working_directory: ~/aws_infrastructure
+      executor:
+        name: node/default
+        tag: '18.0'
+      steps:
+        - checkout
+        - build
+        - pulumi/login:
+          version: 16.0.2
+            access-token: 'pul-f4edae887f207ef0c10d3e60ebaef119a53b8ac0'
+        - pulumi/stack_init:
+            stack: 'pipeline/test-pr_${CIRCLE_BUILD_NUM}'
+        - pulumi/update:
+            stack: 'pipeline/test-pr_${CIRCLE_BUILD_NUM}'
+        - pulumi/stack_output:
+            stack: 'pipeline/test-pr_${CIRCLE_BUILD_NUM}'
+  deploy:
+    executor: serverless-framework/default
+    steps:
+      - checkout
+      - aws-cli/setup
+      - serverless-framework/setup
+      - run:
+          command: serverless deploy -v
+          name: deploy
+workflows:
+  deploy:
+    jobs:
+      - deploy

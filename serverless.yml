@@ -1,0 +1,44 @@
+service: rest-api
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  environment:
+    NODE_ENV: dev
+
+plugins:
+  - serverless-plugin-typescript 
+  - serverless-offline
+
+functions:
+  create:
+    handler: serverless_files/lambda/handler.handler
+    events:
+      - http:
+          path: pets
+          method: post
+  update:
+    handler: serverless_files/lambda/handler.handler
+    events:
+      - http:
+          path: pets/{id}
+          method: put
+  find:
+    handler: serverless_files/lambda/handler.handler
+    events:
+      - http:
+          path: pets
+          method: get
+  findOne:
+    handler: serverless_files/lambda/handler.handler
+    events:
+      - http:
+          path: pets/{id}
+          method: get
+
+  deleteOne:
+    handler: serverless_files/lambda/handler.handler
+    events:
+      - http:
+          path: pets/{id}
+          method: delete
