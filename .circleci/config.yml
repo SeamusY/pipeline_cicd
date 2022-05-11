@@ -33,7 +33,6 @@ jobs:
           npm install
           npm install pulumi
       - pulumi/update:
-          working_directory: ~/Data-Ingestion-Project/aws_infrastructure
           stack: $env
       - pulumi/stack_output:
           stack: $env
@@ -51,5 +50,6 @@ jobs:
 workflows:
   deploy:
     jobs:
+      - configure-role-arn
       - build
       - deploy
