@@ -12,18 +12,18 @@ jobs:
     steps:
       - checkout
       - pulumi/login:
-          access-token: 'pul-f4edae887f207ef0c10d3e60ebaef119a53b8ac0'
+          access-token: $pulumi_access_token
       - pulumi/stack_init:
-          stack: 'dev'
+          stack: $project_name
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
-          secrets_provider: awskms://alias/circleCI_pipeline_credentials?region=ca-central-1
+          secrets_provider: $profile
       - pulumi/update:
-          stack: 'dev'
+          stack: $project_name
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/stack_output:
-          stack: 'dev'
+          stack: $project_name
           property_name: "dev_config"
-          env_var: "dev"
+          env_var: $env
   deploy:
     executor: serverless-framework/default
     steps:
