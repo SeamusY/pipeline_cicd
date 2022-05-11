@@ -24,11 +24,10 @@ jobs:
     working_directory: ~/Data-Ingestion-Project/aws_infrastructure
     steps:
       - checkout:
-        path: ~/Data-Ingestion-Project
+          path: ~/Data-Ingestion-Project
       - pulumi/login:
           access-token: $pulumi_access_token
-      - run: 
-        command: | 
+      - run: | 
           export AWS_ACCESS_KEY_ID=$accessId
           export AWS_SECRET_ACCESS_KEY=$secret
           npm install
