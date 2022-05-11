@@ -12,6 +12,9 @@ jobs:
       - checkout
       - pulumi/login:
           access-token: 'pul-f4edae887f207ef0c10d3e60ebaef119a53b8ac0'
+      - run:
+          command: |
+              npm install
       - pulumi/stack_init:
           stack: 'dev'
       - pulumi/update:
