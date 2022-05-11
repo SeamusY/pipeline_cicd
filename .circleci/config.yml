@@ -18,7 +18,7 @@ jobs:
           export AWS_SECRET_ACCESS_KEY=$secret
           npm install
           npm install pulumi
-          pulumi config set env 'dev'
+          pulumi config set env dev
       - pulumi/update:
           stack: $env
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
