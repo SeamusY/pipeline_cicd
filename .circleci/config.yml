@@ -23,11 +23,18 @@ jobs:
       - image: cimg/node:16.15.0
     working_directory: ~/Data-Ingestion-Project/aws_infrastructure
     steps:
-      - checkout
+      - checkout:
+        path: ~/Data-Ingestion-Project
       - pulumi/login:
           access-token: $pulumi_access_token
-      - run: export AWS_ACCESS_KEY_ID=$accessId && export AWS_SECRET_ACCESS_KEY=$secret |
-            npm install && npm install pulumi 
+      - run: 
+        command: | 
+          export AWS_ACCESS_KEY_ID=$accessId
+          export AWS_SECRET_ACCESS_KEY=$secret
+          npm install
+          npm install pulumi
+
+      - pulumi/
       - pulumi/update:
           stack: $env
       - pulumi/stack_output:
