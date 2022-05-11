@@ -20,6 +20,7 @@ jobs:
           npm install pulumi
       - pulumi/update:
           stack: $env
+          working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/stack_output:
           stack: $env
           property_name: "dev_config"
