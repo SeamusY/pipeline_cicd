@@ -15,6 +15,7 @@ jobs:
           access-token: 'pul-f4edae887f207ef0c10d3e60ebaef119a53b8ac0'
       - pulumi/stack_init:
           stack: 'dev'
+          working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/update:
           stack: 'dev'
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
