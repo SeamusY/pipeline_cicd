@@ -1,3 +1,3 @@
-import { createS3 } from "./S3_bucket";
+import { createS3 } from "./s3_bucket";
 
 export { createS3 };
