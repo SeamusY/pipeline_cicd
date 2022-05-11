@@ -26,7 +26,8 @@ jobs:
       - checkout
       - pulumi/login:
           access-token: $pulumi_access_token
-      - run: export AWS_ACCESS_KEY_ID=$accessId && export AWS_SECRET_ACCESS_KEY=$secret
+      - run: export AWS_ACCESS_KEY_ID=$accessId && export AWS_SECRET_ACCESS_KEY=$secret |
+            npm install && npm install pulumi 
       - pulumi/update:
           stack: $env
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
