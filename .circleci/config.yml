@@ -11,12 +11,16 @@ jobs:
       - checkout
       - pulumi/login:
           access-token: 'pul-f4edae887f207ef0c10d3e60ebaef119a53b8ac0'
+      - run:
+          command: |
+            npm install
+            npm run build
       - pulumi/stack_init:
-          stack: 'pipeline/test-pr_${CIRCLE_BUILD_NUM}'
+          stack: 'dev'
       - pulumi/update:
-          stack: 'pipeline/test-pr_${CIRCLE_BUILD_NUM}'
+          stack: 'dev'
       - pulumi/stack_output:
-          stack: 'pipeline/test-pr_${CIRCLE_BUILD_NUM}'
+          stack: 'dev'
   deploy:
     executor: serverless-framework/default
     steps:
@@ -29,4 +33,5 @@ jobs:
 workflows:
   deploy:
     jobs:
+      - build
       - deploy
