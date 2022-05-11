@@ -5,7 +5,7 @@ import { createRole, cognito_sns_text, authenticated_roles } from "./Configurati
 import  { createSMSVerifier } from "./Pin Point";
 import { createS3 } from "./S3/s3_bucket";
 import { createDB } from "./DynamoDB";
-import { createApi } from "./Api Gateway";
+// import { createApi } from "./Api Gateway";
 // Create an AWS resource (S3 Bucket)
 let config = new pulumi.Config();
 let env_name = config.require("env");

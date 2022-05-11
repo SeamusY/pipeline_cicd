@@ -24,7 +24,7 @@ jobs:
     working_directory: ~/Data-Ingestion-Project/aws_infrastructure
     steps:
       - checkout:
-        path: ~/Data-Ingestion-Project
+          path: ~/Data-Ingestion-Project
       - pulumi/login:
           access-token: $pulumi_access_token
       - run: 
@@ -34,6 +34,7 @@ jobs:
           npm install
           npm install pulumi
       - pulumi/update:
+          working_directory: ~/Data-Ingestion-Project/aws_infrastructure
           stack: $env
       - pulumi/stack_output:
           stack: $env
