@@ -3,7 +3,7 @@ import * as aws from "@pulumi/aws";
 import { sns_publish_policy, cloudWatch_enabler, createPolicy, s3_curd, cognito_enabler_policy } from "./Configurations/Policies/index";
 import { createRole, cognito_sns_text, authenticated_roles } from "./Configurations/Roles";
 import  { createSMSVerifier } from "./Pin Point";
-import { createS3 } from "./S3";
+// import { createS3 } from "./S3";
 import { createDB } from "./DynamoDB";
 // import { createApi } from "./Api Gateway";
 // Create an AWS resource (S3 Bucket)
@@ -41,7 +41,9 @@ new aws.iam.RolePolicyAttachment("cognito_cloudWatcher", {
 })
 
 //S3 Bucket
-createS3();
+// createS3();
+new aws.s3.Bucket(`${env_name}-data-ingestion-stroage`);
+new aws.s3.Bucket(`${env_name}-data-ingestion-stroage-logs`);
 // Amazon Pin Point
 new aws.sns.SmsPreferences("mobile_sns_preferences", {defaultSmsType: "Transactional", monthlySpendLimit: 1, deliveryStatusIamRoleArn: cognito_sns.arn});
 createSMSVerifier();
