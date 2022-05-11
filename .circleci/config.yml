@@ -15,8 +15,9 @@ jobs:
           access-token: 'pul-f4edae887f207ef0c10d3e60ebaef119a53b8ac0'
       - pulumi/stack_init:
           stack: 'aeCorp/dev'
-      - pulumi/update:
+          working_directory: ~/Data-Ingestion-Project/aws_infrastructure
           secrets_provider: awskms://alias/circleCI_pipeline_credentials?region=ca-central-1
+      - pulumi/update:
           stack: 'aeCorp/dev'
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/stack_output:
