@@ -7,7 +7,7 @@ jobs:
   build:
     docker: 
       - image: cimg/node:16.15.0
-    working_directory: ~/repo
+    working_directory: ~/aws_infrastructure
     steps:
       - checkout
       - pulumi/login:
