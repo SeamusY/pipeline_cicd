@@ -33,8 +33,6 @@ jobs:
           export AWS_SECRET_ACCESS_KEY=$secret
           npm install
           npm install pulumi
-
-      - pulumi/
       - pulumi/update:
           stack: $env
       - pulumi/stack_output:
