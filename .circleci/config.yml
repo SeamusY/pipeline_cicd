@@ -4,20 +4,29 @@ orbs:
   pulumi: pulumi/pulumi@2.1.0
   aws-cli: circleci/aws-cli@3.1.1
 jobs:
+  configure-role-arn:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: default
+      - aws-cli/role-arn-setup:
+          profile-name: new-profile
+          role-arn: 'arn:aws:iam::918559970238:user/circleCi_pulumi_deployer'
+          source-profile: default
+      - run: >-
+          aws sts assume-role --role-arn
+          "arn:aws:iam::918559970238:user/circleCi_pulumi_deployer" --role-session-name
+          AWSCLI-Session
   build:
     docker: 
       - image: cimg/node:16.15.0
     working_directory: ~/Data-Ingestion-Project
-    
     steps:
       - checkout
       - pulumi/login:
           access-token: $pulumi_access_token
       - run: export AWS_ACCESS_KEY_ID=$accessId && export AWS_SECRET_ACCESS_KEY=$secret
-
-      - pulumi/stack_init:
-          stack: $env
-          working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/update:
           stack: $env
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
