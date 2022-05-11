@@ -14,14 +14,14 @@ jobs:
       - pulumi/login:
           access-token: $pulumi_access_token
       - pulumi/stack_init:
-          stack: $project_name
+          stack: $env
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
           secrets_provider: $profile
       - pulumi/update:
-          stack: $project_name
+          stack: $env
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/stack_output:
-          stack: $project_name
+          stack: $env
           property_name: "dev_config"
           env_var: $env
   deploy:
