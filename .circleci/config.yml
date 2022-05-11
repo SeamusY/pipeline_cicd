@@ -16,6 +16,7 @@ jobs:
       - pulumi/stack_init:
           stack: 'aeCorp/dev'
       - pulumi/update:
+          secrets_provider: 'awskms://alias/circleCI_pipeline_credentials?region=ca-central-1'
           stack: 'aeCorp/dev'
           working_directory: ~/Data-Ingestion-Project/aws_infrastructure
       - pulumi/stack_output:
