@@ -3,7 +3,7 @@ import * as aws from "@pulumi/aws";
 import { sns_publish_policy, cloudWatch_enabler, createPolicy, s3_curd, cognito_enabler_policy } from "./Configurations/Policies/index";
 import { createRole, cognito_sns_text, authenticated_roles } from "./Configurations/Roles";
 import  { createSMSVerifier } from "./Pin Point";
-import { createS3 } from "./S3/s3_bucket";
+import { createS3 } from "./S3";
 import { createDB } from "./DynamoDB";
 // import { createApi } from "./Api Gateway";
 // Create an AWS resource (S3 Bucket)
