@@ -12,9 +12,9 @@ jobs:
       - checkout:
           path: ~/Data-Ingestion-Project
       - aws-cli/setup:
-            aws-access-key-id: accessId
-            aws-region: region
-            aws-secret-access-key: secret
+            aws-access-key-id: "{accessId}"
+            aws-region: "{region}"
+            aws-secret-access-key: {"secret"}
             profile-name: default
       - pulumi/login:
           access-token: $pulumi_access_token
