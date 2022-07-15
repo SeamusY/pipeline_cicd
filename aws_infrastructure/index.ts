@@ -104,7 +104,7 @@ new aws.cognito.UserPoolClient(`${env_name}-frontend-user-web`, {
 
 new aws.cognito.UserPoolClient(`${env_name}-frontend-user-mobile`, {
     userPoolId: userPool.id,
-    callbackUrls: ["https://www.angel-earth.com/*"],
+    callbackUrls: ["/*"],
     allowedOauthFlowsUserPoolClient: true,
     allowedOauthFlows: [
         "code"
